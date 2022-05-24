@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "tcpserver.h": "c",
+        "netdb.h": "c"
+    }
+}

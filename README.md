@@ -1,150 +1,145 @@
-<p align="center">
-<img src="documentation/figures/logo.png" width="60%" >
-</p>
+# NK-980IoT
+## 1. Introduction
+Nuvoton Technology provides industrial IoT development platform using NUC980DK61Y microprocessor, which is an industrial IoT open platform, including complete hardware design and software reference design. The platform is powered by Nuvoton ARM9 MPU with a 300 MHz internal speed and up to 128 MB DDR memory, single 10/100 Ethernet port, 2 high-speed USB hosts, 1 Gb SPI NAND Flash memory, microphone input, stereo headphone output and Arduino compatible interface.
 
-**English** | [中文](README_zh.md) |
-
-[![GitHub](https://img.shields.io/github/license/RT-Thread/rt-thread.svg)](https://github.com/RT-Thread/rt-thread/blob/master/LICENSE)
-[![GitHub release](https://img.shields.io/github/release/RT-Thread/rt-thread.svg)](https://github.com/RT-Thread/rt-thread/releases)
-[![Build Status](https://travis-ci.org/RT-Thread/rt-thread.svg)](https://travis-ci.org/RT-Thread/rt-thread)
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/RT-Thread/rt-thread?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![GitHub pull-requests](https://img.shields.io/github/issues-pr/RT-Thread/rt-thread.svg)](https://github.com/RT-Thread/rt-thread/pulls)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](https://github.com/RT-Thread/rt-thread/pulls)
-
-# RT-Thread
-
-RT-Thread was born in 2006, it is an open source, neutral, and community-based real-time operating system (RTOS).
-
-RT-Thread is mainly written in C language, easy to understand and easy to port(can be quickly port to a wide range of mainstream MCUs and module chips). It applies object-oriented programming methods to real-time system design, making the code elegant, structured, modular, and very tailorable.
-
-RT-Thread has Standard version and Nano version. For resource-constrained microcontroller (MCU) systems, the Nano version that requires only 3KB Flash and 1.2KB RAM memory resources can be tailored with easy-to-use tools. For resource-rich IoT devices, RT-Thread can use the on-line software package management tool, together with system configuration tools, to achieve intuitive and rapid modular cutting, seamlessly import rich software packages; thus, achieving complex functions like Android's graphical interface and touch sliding effects, smart voice interaction effects, and so on.
-
-## RT-Thread Architecture
-
-RT-Thread has not only a real-time kernel, but also rich components. Its architecture is as follows:
+[![NK-980IOT](https://i.imgur.com/bKvBJLA.png "NK-980IOT")](https://i.imgur.com/bKvBJLA.png "NK-980IOT")
 
 
-![architecture](./documentation/figures/architecture.png)
+### 1.1 MCU specification
 
+|  | Features |
+| -- | -- |
+| Part NO. | NUC980DK61Y |
+| CPU ARCH. | 32-bit ARM926EJ-STM |
+| Operation frequency | 300 MHz |
+| Embedded SDRAM size | Built-in 64MB (Up to 128 MB DDR memory) |
+| Crypto engine |  AES, RSA, ECC, HMAC and SHA crypto accelerator |
+| RMII interface |  10/100 Mbps x2 |
+| USB 2.0 |  High Speed Host x1, High Speed Host/Device x1 |
+| Audio |  Mono microphone / Stereo headphone |
+| Extern storage |  1 Gbit SPI-NAND Flash |
+| SD card slot |  SD |
+| EBI interface |  External memory expansion interface |
 
-It includes:
+### 1.2 Interface
 
-- Kernel layer: RT-Thread kernel, the core part of RT-Thread, includes the implementation of objects in the kernel system, such as multi-threading and its scheduling, semaphore, mailbox, message queue, memory management, timer, etc.; libcpu/BSP (Chip Migration Related Files/Board Support Package) is closely related to hardware and consists of peripheral drivers and CPU porting.
+| Interface |
+| -- |
+| Arduino UNO |
+| A RJ45 Ethernet |
+| An USB 2.0 HS port |
+| An USB 2.0 HS OTG port |
+| A microSD slot |
+| A 3.5mm Audio connector |
+| An EBI connector |
+| An ICE connector |
 
-- Components and Service Layer: Components are based on upper-level software on top of the RT-Thread kernel, such as virtual file systems, FinSH command-line interfaces, network frameworks, device frameworks, and more. Its modular design allows for high internal cohesion inside the components and low coupling between components.
+### 1.3 On-board devices
 
-- [RT-Thread software package](https://packages.rt-thread.org/en/index.html): A general-purpose software component running on the RT-Thread IoT operating system platform for different application areas, consisting of description information, source code or library files. RT-Thread provides an open package platform with officially available or developer-supplied packages that provide developers with a choice of reusable packages that are an important part of the RT-Thread ecosystem. The package ecosystem is critical to the choice of an operating system because these packages are highly reusable and modular, making it easy for application developers to build the system they want in the shortest amount of time. RT-Thread supports more than 370 software packages.
+| Device | Description | Driver supporting status |
+| -- | -- | -- |
+|Ethernet PHY | IP101GR | Supported |
+|Button |  | Supported |
+|LEDs |  | Supported |
+|Audio Codec | NAU8822, Supports MIC and earphone | Supported |
+|USB Device | VCOM + MStorage | Supported |
+|2xUSB Host | MStorage | Supported |
+|SPI NAND flash | W25N01GVZE1G | Supported |
+|VCOM | For console | Ready.(Need to install VCOM driver) |
 
-## RT-Thread Features
+## 2. Supported compiler
+Support GCC and MDK IDE/compilers. More information of these compiler version as following:
+| IDE/Compiler  | Tested version            |
+| ---------- | ---------------------------- |
+| MDK        | uVision 5.25                 |
+| GCC        | 6-2017-q1-update             |
 
-- Designed for resource-constrained devices, the minimum kernel requires only 1.2KB of RAM and 3 KB of Flash.
-- A variety of standard interfaces, such as POSIX, CMSIS, C++ application environment.
-- Has rich components and a prosperous and fast growing package ecosystem.
-- Elegant code style, easy to use, read and master.
-- High Scalability. RT-Thread has high-quality scalable software architecture, loose coupling, modularity, is easy to tailor and expand.
-- Supports high-performance applications.
-- Supports all mainstream compiling tools such as GCC, Keil and IAR.
-- Supports a wide range of <a href="https://www.rt-thread.io/board.html">architectures and chips</a>.
+Notice: Please install ICE driver for development and [NuMicro_ARM9_Device_Database_Keil](https://www.nuvoton.com/resource-download.jsp?tp_GUID=SW1820201207155701).
 
-## Code Catalogue
+## 3. Program firmware
+### 3.1 SDRAM Downloading using NuWriter
+You can use NuWriter to download rtthread.bin into SDRAM, then run it.
+[![SDRAM Downloading using NuWriter](https://i.imgur.com/NvbzsRp.gif "SDRAM Downloading using NuWriter")](https://i.imgur.com/NvbzsRp.gif "SDRAM Downloading using NuWriter")
+<br>
+Choose type: DDR/SRAM<br>
+<< Press Re-Connect >><br>
+Choose file: Specify your rtthread.bin file.<br>
+Execute Address: 0x0<br>
+Option: Download and run<br>
+<< Press Download >><br>
+Enjoy!! <br>
+<br>
 
-   RT-Thread source code catalog is shown as follow:
+### 3.2 SPI NOR flash using NuWriter
+You can use NuWriter to program rtthread.bin into SPI NOR flash.
+[![SPI NOR flash](https://i.imgur.com/8OtXGSQ.gif "SPI NOR flash")](https://i.imgur.com/8OtXGSQ.gif "SPI NOR flash using NuWriter")
+<br>
+Choose type: SPI<br>
+<< Press Re-Connect >><br>
+Choose file: Specify your rtthread.bin file.<br>
+Image Type: Loader<br>
+Execute Address: 0x0<br>
+<< Press Program >><br>
+<< Press OK & Wait it down >><br>
+<< Set Power-on setting to SPI NOR booting >><br>
+<< Press Reset button on board >><br>
+Enjoy!! <br>
+<br>
 
-| Name          | Description                                             |
-| ------------- | ------------------------------------------------------- |
-| BSP          | Board Support Package based on the porting of various development boards |
-| components    | Components, such as finsh shell, file system, protocol stack etc. |
-| documentation | Related documents, like coding style, doxygen etc.        |
-| examples      | Related sample code                                     |
-| include       | Head files of RT-Thread kernel                           |
-| libcpu        | CPU porting code such as ARM/MIPS/RISC-V etc. |
-| src           | The source files for the RT-Thread kernel. |
-| tools         | The script files for the RT-Thread command build tool. |
+### 3.3 SPI NAND flash using NuWriter
+You can use NuWriter to program rtthread.bin into SPI NAND flash.
+[![SPI NAND flash](https://i.imgur.com/p9LudBK.gif "SPI NAND flash")](https://i.imgur.com/p9LudBK.gif "SPI NAND flash using NuWriter")
+<br>
+Choose type: SPINAND<br>
+<< Press Re-Connect >><br>
 
-RT-Thread has now been ported for nearly 200 development boards, most BSPs support MDK, IAR development environment and GCC compiler, and have provided default MDK and IAR project, which allows users to add their own application code directly based on the project. Each BSP has a similar directory structure, and most BSPs provide a README.md file, which is a markdown-format file that contains the basic introduction of BSP, and introduces how to simply start using BSP.
+<< Press Erase >><br>
+<< Select Erase All >><br>
+<< Press OK >><br>
 
-# Resources
+Choose file: Specify your uboot-spl.bin file.<br>
+Image Type: Loader<br>
+Execute Address: 0x200<br>
+<< Press Program >><br>
 
-## Supported Architectures
+Choose file: Specify your uboot.bin file.<br>
+Image Type: Data<br>
+Image start address: 0x100000<br>
+<< Press Program >><br>
 
-RT-Thread supports many architectures, and has covered the major architectures in current applications. Architecture and chip manufacturer involved:
+Choose file: Specify your rtthread.bin file.<br>
+Image Type: Data<br>
+Image start address: 0x200000<br>
+<< Press Program >><br>
 
-- **ARM Cortex-M0/M0+**：manufacturers like ST
-- **ARM Cortex-M3**：manufacturers like ST、Winner Micro、MindMotion, ect.
-- **ARM Cortex-M4**：manufacturers like ST、Nuvton、NXP、GigaDevice、Realtek、Ambiq Micro, ect.
-- **ARM Cortex-M7**：manufacturers like ST、NXP
-- **ARM Cortex-M23**：manufacturers like GigaDevice
-- **ARM Cortex-M33**：manufacturers like ST
-- **ARM Cortex-R4**
-- **ARM Cortex-A8/A9**：manufacturers like NXP
-- **ARM7**：manufacturers like Samsung
-- **ARM9**：manufacturers like Allwinner、Xilinx 、GOKE
-- **ARM11**：manufacturers like Fullhan
-- **MIPS32**：manufacturers like loongson、Ingenic
-- **RISC-V**：manufacturers like Hifive、Kendryte、Nuclei
-- **ARC**：manufacturers like SYNOPSYS
-- **DSP**：manufacturers like TI
-- **C-Sky**
-- **x86**
+Choose file: Specify your env.txt file.<br>
+Image Type: Environment<br>
+Image start address: 0x80000<br>
+<< Press Program >><br>
 
-## Supported IDE and Compiler
+<< Press OK & Wait it down >><br>
+<< Set Power-on setting to SPI NAND booting >><br>
+<< Press Reset button on board >><br>
+Enjoy!! <br>
+<br>
 
-The main IDE/compilers supported by RT-Thread are:
+## 4. Test
+You can use Tera Term terminate emulator (or other software) to type commands of RTT. All parameters of serial communication are shown in below image. Here, you can find out the corresponding port number of Nuvoton Virtual Com Port in window device manager.
 
-- RT-Thread Studio IDE
-- MDK KEIL
-- IAR
-- GCC
+[![Serial settings](https://i.imgur.com/5NYuSNM.png "Serial settings")](https://i.imgur.com/5NYuSNM.png "Serial settings")
 
-## RT-Thread Studio IDE
+## 5. Purchase
+* [Nuvoton Direct][1]
 
-[User Manual](https://www.rt-thread.io/document/site/rtthread-studio/um/studio-user-manual/) | [Tutorial Videos](https://youtu.be/ucq5eJgZIQg)
+## 6. Resources
+* [Download Board Schematics][2]
+* [Download NK-980IOT Quick Start Guide][3]
+* [Download TRM][4]
+* [Download NuWriter][5]
 
-RT-Thread Studio IDE (a.k.a. RT-Studio) is a one-stop intergrated development environment built by RT-Thread team. It has a easy-to-use graphical configuration system and a wealth of software packages and components resources. RT-Studio has the features of project creation, configuration and management,as well as code editing, SDK management, build configuration, debugging configuration, program download and debug. We're looking to make the use of RT-Studio as intuitive as possible, reducing the duplication of work and improving the development efficiency.
-
-![studio](./documentation/figures/studio.gif)
-
-## Env Tool
-
-[User Manual](documentation/env/env/) | [Tutorial Videos](https://www.youtube.com/watch?v=dEK94o_YoSo)
-
-In the early stage, RT-Thread team also created an auxiliary tool called Env. It is an auxiliary tool with a TUI (Text-based user interface). Developers can use Env tool to configure and generate the GCC, Keil MDK, and IAR projects.
-
-![env](./documentation/figures/env.png)
-
-# Getting Started
-
-[RT-Thread Programming Guide](https://www.rt-thread.io/document/site/tutorial/quick-start/introduction/introduction/) | [RT-Thread Studio IDE](https://www.rt-thread.io/studio.html) | [Kernel Sample](https://github.com/RT-Thread-packages/kernel-sample) | [RT-Thread Beginners Guide](https://www.youtube.com/watch?v=ZMi1O-Rr7yc&list=PLXUV89C_M3G5KVw2IerI-pqApdSM_IaZo)
-
-Based on [STM32F103 BluePill](https://github.com/RT-Thread/rt-thread/tree/master/bsp/stm32/stm32f103-blue-pill) | [Raspberry Pi Pico](https://github.com/RT-Thread/rt-thread/tree/master/bsp/raspberry-pico)
-
-## Simulator
-
-RT-Thread BSP can be compiled directly and downloaded to the corresponding development board for use. In addition, RT-Thread also provides qemu-vexpress-a9 BSP, which can be used without hardware platform. See the getting started guide below for details.
-
-- [Getting Started of QEMU with Env(Windows)](documentation/quick-start/quick_start_qemu/quick_start_qemu.md)
-
-- [Getting Started of QEMU with Env(Ubuntu)](documentation/quick-start/quick_start_qemu/quick_start_qemu_linux.md)
-
-# License
-
-RT-Thread is an open source software and has been licensed under Apache License Version 2.0 since v3.1.1. License information and copyright information can generally be seen at the beginning of the code:
-
-```c
-/* Copyright (c) 2006-2018, RT-Thread Development Team
- *
- * SPDX-License-Identifier: Apache-2.0
- * ...
- */
-```
-
-# Community
-
-RT-Thread is very grateful for the support from all community developers, and if you have any ideas, suggestions or questions in the process of using RT-Thread, RT-Thread can be reached by the following means, and we are also updating RT-Thread in real time on these channels. At the same time, any questions can be asked in the [issue section of RT-Thread repository](https://github.com/RT-Thread/rt-thread/issues) or [RT-Thread forum](https://club.rt-thread.io/), and community members will answer them.
-
-[Website](https://www.rt-thread.io) | [Github](https://github.com/RT-Thread/rt-thread) | [Twitter](https://twitter.com/rt_thread) | [LinkedIn](https://www.linkedin.com/company/rt-thread-iot-os/posts/?feedView=all) | [Youtube](https://www.youtube.com/channel/UCdDHtIfSYPq4002r27ffqPw) | [Facebook](https://www.facebook.com/RT-Thread-IoT-OS-110395723808463/?modal=admin_todo_tour) | [Medium](https://rt-thread.medium.com/)
-
-# Contribution
-
-If you are interested in RT-Thread and want to join in the development of RT-Thread and become a code contributor,please refer to the [Code Contribution Guide](documentation/contribution_guide/contribution_guide.md).
-
+  [1]: https://direct.nuvoton.com/tw/numaker-iiot-nuc980
+  [2]: https://www.nuvoton.com/resource-download.jsp?tp_GUID=UG1020190308162722
+  [3]: http://www.nuvoton.com/resource-download.jsp?tp_GUID=UG0520190311115040
+  [4]: https://www.nuvoton.com/resource-download.jsp?tp_GUID=DA05-NUC980-1
+  [5]: https://github.com/OpenNuvoton/NUC980_NuWriter
+  
