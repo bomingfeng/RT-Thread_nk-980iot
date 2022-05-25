@@ -1,0 +1,15 @@
+# RT-Thread building script for component
+#Import('rtconfig')
+from building import *
+
+cwd = GetCurrentDir()
+
+src = Glob('*.c') + Glob('Antialias/*.c') + Glob('ConvertColor/*.c') + Glob('ConvertMono/*.c') + Glob('Core/*.c') + Glob('DisplayDriver/*.c') + Glob('Font/*.c') + Glob('MemDev/*.c') + Glob('Widget/*.c') + Glob('WM/*.c') + Glob('GUIConf/*.c')
+
+cpppath = ['.' , './Antialias','./ConvertColor','./ConvertMono' , './Core' , './DisplayDriver' , './Font' , './MemDev' , './Widget' , './WM' , './GUIConf']
+
+
+
+group = DefineGroup('emWin506-Src', src, depend = ['emWin506_GUI'], CPPPATH = cpppath)
+
+Return('group')

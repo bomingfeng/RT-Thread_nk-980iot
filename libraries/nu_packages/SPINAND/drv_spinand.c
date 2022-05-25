@@ -571,7 +571,10 @@ void uffs_setup_storage(struct uffs_StorageAttrSt *attr,
 }
 #endif
 
+#if defined(RT_USING_FINSH)
 #include <finsh.h>
+#endif
+
 static int nread(int argc, char **argv)
 {
     int ret = -1;

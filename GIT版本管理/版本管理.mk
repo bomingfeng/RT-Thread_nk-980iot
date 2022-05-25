@@ -20,8 +20,8 @@
 19。git remote -v：    查看远程仓库详细信息，包括仓库名称，关联地址
 20。git remote remove orign：删除orign仓库
 21。git remote add origin 仓库地址：添加远程仓库地址
-22。git push -u origin master： 提交到远程仓库的master主干
-
+22。gti push -u origin master： 提交到远程仓库的master主干
+23。git remote rm origin 删除远程仓库网址
 
 
 分支管理：
