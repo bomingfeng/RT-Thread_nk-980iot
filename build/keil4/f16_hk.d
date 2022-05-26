@@ -1,0 +1,10 @@
+.\build\keil4\f16_hk.o: rt-thread\components\GUI\emWin506-Src\Font\F16_HK.c
+.\build\keil4\f16_hk.o: C:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\build\keil4\f16_hk.o: rt-thread\components\GUI\emWin506-Src\Core\GUI_FontIntern.h
+.\build\keil4\f16_hk.o: rt-thread\components\GUI\emWin506-Src\Core\GUI.h
+.\build\keil4\f16_hk.o: rt-thread\components\GUI\emWin506-Src\Core\GUI_ConfDefaults.h
+.\build\keil4\f16_hk.o: rt-thread\components\GUI\emWin506-Src\GUIConf\GUIConf.h
+.\build\keil4\f16_hk.o: rt-thread\components\GUI\emWin506-Src\Core\GUI_Type.h
+.\build\keil4\f16_hk.o: rt-thread\components\GUI\emWin506-Src\Core\LCD.h
+.\build\keil4\f16_hk.o: rt-thread\components\GUI\emWin506-Src\Core\Global.h
+.\build\keil4\f16_hk.o: rt-thread\components\GUI\emWin506-Src\Core\GUI_Version.h
