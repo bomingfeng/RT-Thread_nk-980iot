@@ -56,8 +56,6 @@ int main(int argc, char **argv)
 
 
 #if defined(RT_USING_PIN)
-    int counter = 1000;
-
     /* set LED_R pin mode to output */
     rt_pin_mode(LED_R, PIN_MODE_OUTPUT);
 
@@ -78,12 +76,12 @@ int main(int argc, char **argv)
     rt_pin_irq_enable(KEY_2, PIN_IRQ_ENABLE);
 #endif
 
-    while (counter--)
+    while (1)
     {
         rt_pin_write(LED_R, PIN_HIGH);
-        rt_thread_mdelay(100);
+        rt_thread_mdelay(1000);
         rt_pin_write(LED_R, PIN_LOW);
-        rt_thread_mdelay(100);
+        rt_thread_mdelay(1000);
     }
 
 #endif
